@@ -45,22 +45,24 @@ def search():
 
 app=Tk()
 app.title=("Weather App")
-app.geometry=('1000x500')
+app.geometry=('700x350')
+frame=Frame(app,bg='light blue',height=500,width=925)
 
 city_text=StringVar()
-city_entry=Entry(app,textvariable=city_text)
+
+city_entry=Entry(app,textvariable=city_text,width=20,font=('bold',20),bg='light blue')
 city_entry.pack()
 
-search_btn=Button(app,text="Search Weather",width=12,command=search)
+search_btn=Button(app,text="Search",width=14,command=search,font=('bold',14),bg='grey')
 search_btn.pack()
 
 
 location_lbl=Label(app,text="",font=('bold',20))
 location_lbl.pack()
 
-img=PhotoImage(file='')
-Image = Label(app, image = img)
-Image.pack()
+# img=PhotoImage(file='weatherIcons.png')
+# Image = Label(app, image = img)
+# Image.pack()
 
 temp_lbl=Label(app,text="")
 temp_lbl.pack()
