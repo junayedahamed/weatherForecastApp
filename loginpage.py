@@ -12,6 +12,7 @@ bigText = Label(text="Login and Registration",font="Verdana 20 bold")
 bigText.place(x=30,y=30)
 
 def Register():
+    mainWindow.destroy()
     registerWindow = Tk()
     registerWindow.title("Register")
     registerWindow.geometry("400x400")
