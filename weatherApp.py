@@ -1,8 +1,11 @@
-
+import tkinter
 from  tkinter import *
 from tkinter import messagebox
 from configparser import ConfigParser
+
+import app
 import requests
+
 
 url='https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
 
@@ -10,6 +13,7 @@ config_file='config.ini'
 config=ConfigParser()
 config.read(config_file)
 api_key=config['api_key']['key']
+
 
 
 def get_weather(city):
@@ -38,18 +42,19 @@ def search():
 
 
 
-        temp_lbl['text']='{:.2f}°C,{:.2f}°F'.format(weather[3],weather[2])
+        temp_lbl['text']='{:.2f}°C\n,{:.2f}°F\n'.format(weather[3],weather[2])
         weather_lbl['text']=weather[4]
     else:
         messagebox.showerror('Error','Cannot find city {}'.format(city))
 
 app=Tk()
 app.title=("Weather App")
-app.geometry=('700x350')
-frame=Frame(app,bg='light blue',height=500,width=925)
+app.geometry=('900x800')
+frame=Frame(app,bg='light blue',height=850,width=925)
 
 city_text=StringVar()
-
+location_lbl=Label(app,text="",font=('bold',20))
+location_lbl.pack()
 city_entry=Entry(app,textvariable=city_text,width=20,font=('bold',20),bg='light blue')
 city_entry.pack()
 
@@ -57,18 +62,21 @@ search_btn=Button(app,text="Search",width=14,command=search,font=('bold',14),bg=
 search_btn.pack()
 
 
-location_lbl=Label(app,text="",font=('bold',20))
-location_lbl.pack()
 
-# img=PhotoImage(file='weatherIcons.png')
+#
+# img=PhotoImage(file='')
 # Image = Label(app, image = img)
+# img.place(x=20,y=20)
+#
 # Image.pack()
 
-temp_lbl=Label(app,text="")
+temp_lbl=Label(app,text="",)
 temp_lbl.pack()
 
+location_lbl=Label(app,text="",font=('bold',20))
 
-weather_lbl=Label(app,text="")
+location_lbl.pack()
+weather_lbl=Label(app,text="Search City in the box",height=8,font=("bold",10))
 weather_lbl.pack()
 
 

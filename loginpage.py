@@ -9,6 +9,8 @@ from customtkinter import CTk
 
 # from components import singInFunc as snf
 import os
+
+
 os.system('cls')
 
 
@@ -19,23 +21,19 @@ db = firestore.client()
 
 # from pages import signuptk , loginPage
 root = customtkinter.CTk()
-root.title("Shop Monitoring System")
+root.title("WeatherAPp")
 root.geometry("280x300")
 root.resizable(False, False)
 
-# Create page 1
+# Create first page
 
 page_one = tk.Frame(root)
 page_one.grid(row=0, column=0, sticky="nsew")
 
 
-# image CTkFrame
-# image_CTkFrame = customtkinter.CTkFrame(page_one, width=850, height=700)
-# image_CTkFrame.grid(row=0, column=0)
-
-# Login page CTkFrame
+# Login page
 loginCTkFrame = tk.LabelFrame(
-    page_one, text="Login or Signup", width=430, height=700, fg="black", bg="white")
+    page_one, text="Login /Signup", width=430, height=700, fg="green", bg="white")
 loginCTkFrame.grid(row=0, column=1, sticky="nsew")
 
 
@@ -44,20 +42,15 @@ signinCTkFrame = customtkinter.CTkFrame(
     loginCTkFrame, fg_color='white', width=430, height=700)
 signinCTkFrame.grid(row=0, column=0,  pady=20)
 
-# #creating image for root window with 500x500 size
-# image = tk.PhotoImage(file="images/image.png" , width=990, height=720)
-# Label = tk.Label(image_CTkFrame, image=image, text="Shop Monitoring System", fg="black", bg="white")
-# Label.grid(row=0, column=0)
 
-
-# creating singin CTkFrame components
+# creating singin
 title = customtkinter.CTkLabel(
     signinCTkFrame, text='Login', font=('bold', 20), text_color='black')
 
 title.grid(row=0, column=0, columnspan=2, pady=20)
 
 name = customtkinter.CTkLabel(
-    signinCTkFrame, text='Username', text_color='black')  # f
+    signinCTkFrame, text='Username', text_color='black')
 name.grid(row=1, column=0)
 
 name_entry = customtkinter.CTkEntry(signinCTkFrame)
@@ -89,12 +82,6 @@ buttonCTkFrame = customtkinter.CTkFrame(signinCTkFrame, fg_color='white')
 buttonCTkFrame.grid(row=7, column=0, columnspan=2)
 
 
-''''
-funtioncs that will work for verifying the user
-def check():
-'''
-
-
 def check(name, password, id):
 
     doc_ref = db.collection("normal").document(id)
@@ -102,23 +89,29 @@ def check(name, password, id):
     print(f"Document data: {doc}")
     if doc != None:
         if doc["name"] == name and doc["password"] == password and doc["id"] == id:
-            print("Successfully logged")
 
-            notify.config(text="Successfully logged")
+            print("Login Successfull")
             page_one.destroy()
 
+            notify.config(text="Login Successfull")
+
+
+
+
+
         else:
-            print("Invalid Credentials")
-            notify.config(text="Invalid Credentials")
+            print("Invalid Username/Password")
+            notify.config(text="Invalid Username/Password")
 
     else:
-        notify.config(text="Invalid Credentials")
+        notify.config(text="Invalid Username/Password")
 
     name_entry.delete(0, tk.END)
     password_entry.delete(0, tk.END)
     email_entry.delete(0, tk.END)
 
     return True
+
 
 
 def signup(name, password, id):
@@ -140,10 +133,10 @@ def signup(name, password, id):
 # Buttons
 
 
-button = customtkinter.CTkButton(buttonCTkFrame, text="SingIn", command=lambda: check(
+button = customtkinter.CTkButton(buttonCTkFrame, text="SignIn", fg_color="teal", command=lambda: check(
     name_entry.get(), password_entry.get(), email_entry.get()))
 button.grid(row=7, column=1)
-button = customtkinter.CTkButton(buttonCTkFrame, text="SignUp", command=lambda: signup(
+button = customtkinter.CTkButton(buttonCTkFrame, text="SignUp", fg_color="teal", command=lambda: signup(
     name_entry.get(), password_entry.get(), email_entry.get()))
 button.grid(row=7, column=3)
 
