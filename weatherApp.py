@@ -7,6 +7,7 @@ import app
 import requests
 
 
+
 url='https://api.openweathermap.org/data/2.5/weather?q={}&appid={}'
 
 config_file='config.ini'
@@ -74,6 +75,7 @@ temp_lbl=Label(app,text="",)
 temp_lbl.pack()
 
 location_lbl=Label(app,text="",font=('bold',20))
+
 
 location_lbl.pack()
 weather_lbl=Label(app,text="Search City in the box",height=8,font=("bold",10))
